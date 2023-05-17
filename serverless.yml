@@ -24,14 +24,15 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - XXX:*
+        - ses:*
       Resource: '*'
 
 functions:
-  XXX:
-    handler: src/functions/endpoints/XXX.handler
+  sendReminder:
+    handler: src/functions/scheduleTasks/reminderEmail.handler
     events:
-      - http:
-          path:
-          method: POST
-          cors: true
+      - schedule:
+          rate: cron(00 13 ? * * *)
+
+plugins:
+  - serverless-local-schedule
