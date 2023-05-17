@@ -32,7 +32,9 @@ functions:
     handler: src/functions/scheduleTasks/reminderEmail.handler
     events:
       - schedule:
-          rate: cron(00 13 ? * * *)
-
-plugins:
-  - serverless-local-schedule
+          rate: cron(00 9 ? * 7 *)
+  sendMorningNews:
+    handler: src/functions/scheduleTasks/morningNews.handler
+    events:
+      - schedule:
+          rate: cron(15 07 ? * * *)
